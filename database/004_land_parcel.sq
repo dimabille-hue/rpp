@@ -1,0 +1,38 @@
+SET search_path TO core, public;
+
+CREATE TABLE land_parcel
+(
+    object_id                   BIGINT PRIMARY KEY
+        REFERENCES object(id)
+        ON DELETE CASCADE,
+
+    category_land               VARCHAR(200),
+
+    permitted_use               TEXT,
+
+    cadastral_quarter           VARCHAR(20),
+
+    cadastral_cost              NUMERIC(18,2),
+
+    cadastral_cost_date         DATE,
+
+    area_registered             NUMERIC(18,2),
+
+    area_measured               NUMERIC(18,2),
+
+    utilization                 TEXT,
+
+    ownership_type              VARCHAR(200),
+
+    ownership_form              VARCHAR(200),
+
+    land_right                  VARCHAR(200),
+
+    date_registration           DATE
+);
+
+CREATE INDEX idx_land_quarter
+ON land_parcel(cadastral_quarter);
+
+CREATE INDEX idx_land_cost
+ON land_parcel(cadastral_cost);
