@@ -1,13 +1,14 @@
 from abc import ABC, abstractmethod
+from typing import Iterable
 
 
 class Parser(ABC):
     """
-    Преобразование исходного файла
-    в поток словарей.
+    Любой парсер возвращает поток словарей.
+
+    Один словарь = одна запись.
     """
 
     @abstractmethod
-    def parse(self, file):
-
-        yield {}
+    def parse(self, file) -> Iterable[dict]:
+        ...
